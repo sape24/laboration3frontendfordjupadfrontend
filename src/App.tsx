@@ -1,10 +1,23 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Products from './pages/Products';
+import ProductDetail from './pages/ProductDetail';
+import Login from './pages/Login';
+import Admin from './pages/Admin';
 import './App.css'
 
 function App() {
   return (
-      <div>
-        <h1>Lagersystem</h1>
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Products />} />
+            <Route path="products/:id" element={<ProductDetail />} />
+            <Route path="login" element={<Login />} />
+            <Route path="admin" element={<Admin />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
   );
 }
 
