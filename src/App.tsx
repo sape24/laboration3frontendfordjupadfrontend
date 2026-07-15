@@ -5,9 +5,11 @@ import ProductDetail from './pages/ProductDetail';
 import Login from './pages/Login';
 import Admin from './pages/Admin';
 import './App.css'
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
+    <AuthProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -18,6 +20,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+    </AuthProvider>
   );
 }
 

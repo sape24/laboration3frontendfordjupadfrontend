@@ -9,7 +9,15 @@ export interface Product {
     updatedAt: string;
 }
 
-export interface Login {
+export interface LoginType {
     token: string;
     username: string;
+}
+
+export interface AuthContextType {
+    token: string | null;
+    username: string | null;
+    login: (token: string, username: string) => void;
+    logout: () => void;
+    isLoggedIn: boolean;
 }
