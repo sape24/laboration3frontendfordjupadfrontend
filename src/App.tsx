@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Admin from './pages/Admin';
 import './App.css'
 import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
             <Route index element={<Products />} />
             <Route path="products/:id" element={<ProductDetail />} />
             <Route path="login" element={<Login />} />
-            <Route path="admin" element={<Admin />} />
+            <Route path="admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/>
           </Route>
         </Routes>
       </BrowserRouter>
