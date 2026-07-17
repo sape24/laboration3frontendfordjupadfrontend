@@ -21,3 +21,11 @@ export interface AuthContextType {
     logout: () => void;
     isLoggedIn: boolean;
 }
+
+export interface ProductInput {
+    name: string;
+    description: string;
+    price: number;
+    stock: number;
+    category: string;
+}
