@@ -2,10 +2,12 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import './Layout.css'
 
+//Gemensam layout med navmeny som anpassas efter inloggningstatus
 function Layout() {
     const {isLoggedIn, username, logout} = useAuth();
     const navigate = useNavigate();
 
+    //Loggar ut och skickar användaren till startsidan
     const handleLogout = () => {
         logout();
         navigate('/');
@@ -15,6 +17,7 @@ function Layout() {
             <header>
                 <nav className="navbar">
                     <NavLink to="/" className={({isActive}) => (isActive ? 'nav-link active' : 'nav-link')}>Produkter</NavLink>
+                    {/* Visar admin, användarnamn och utloggning när inloggad annars logga in*/}
                     {isLoggedIn ? (
                         <>
                             <NavLink to="/admin" className={({isActive}) => (isActive ? 'nav-link active' : 'nav-link')}>Administration</NavLink>

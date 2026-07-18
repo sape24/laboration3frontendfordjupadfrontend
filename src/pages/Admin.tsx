@@ -4,6 +4,7 @@ import ProductForm from '../components/ProductForm';
 import type { Product, ProductInput } from '../types';
 import './Admin.css';
 
+//Skyddad adminsida för att skapa, redigera och ta bort produkter
 function Admin() {
   const [products, setProducts] = useState<Product[]>([]);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
@@ -12,6 +13,7 @@ function Admin() {
   const { token } = useAuth();
   const API_URL = import.meta.env.VITE_API_URL;
 
+  //Hämta alla produkter
   const getProducts = async () => {
     try {
       const res = await fetch(`${API_URL}/products`);
@@ -28,9 +30,11 @@ function Admin() {
     getProducts();
   }, []);
 
+  //Skapar eller updaterar beroende på om en produkt redigeras
   const handleSubmit = async (productData: ProductInput) => {
     try {
       if (editingProduct) {
+        //Uppdaterar befintlig produkt token skickas med i headern
         const res = await fetch(`${API_URL}/products/${editingProduct._id}`, {
           method: 'PUT',
           headers: {
@@ -46,6 +50,7 @@ function Admin() {
         setProducts(products.map((p) => (p._id === updated._id ? updated : p)));
         setEditingProduct(null);
       } else {
+        //Skapar ny produkt
         const res = await fetch(`${API_URL}/products`, {
           method: 'POST',
           headers: {
@@ -66,7 +71,8 @@ function Admin() {
       console.error(err);
     }
   };
-
+ 
+  //Tar bort en produkt token skickas med i headern
   const handleDelete = async (id: string) => {
     try {
       const res = await fetch(`${API_URL}/products/${id}`, {

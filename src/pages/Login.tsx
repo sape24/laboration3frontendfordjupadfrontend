@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import type { LoginType } from "../types";
 import './Login.css';
 
+//Inloggningsida som autentiserar mot API och sparar token via context
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,6 +13,7 @@ function Login() {
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
 
+  //Validerar fälten, loggar in och skickar användaren till admin vid lyckad inloggning
   const handleSubmit = async () => {
     if (!username || !password) {
       setError('Fyll i både användarnamn och lösenord');
@@ -31,6 +33,7 @@ function Login() {
         throw new Error('Fel användarnamn eller lösenord');
       }
 
+      //Sparar token och användarnamn via context, navigerar sedan till admin
       const data: LoginType = await res.json();
       login(data.token, data.username);
       navigate('/admin');

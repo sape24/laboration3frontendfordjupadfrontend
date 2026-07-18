@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import type { Product, ProductInput } from '../types';
 import './ProductForm.css';
 
+//Definierar vilka props formuläret behöver från admin
 interface ProductFormProps {
   onSubmit: (product: ProductInput) => Promise<void>;
   editingProduct: Product | null;
   onCancel: () => void;
 }
 
+//Formulär som används för både att skapa och redigera produkter
 function ProductForm({ onSubmit, editingProduct, onCancel }: ProductFormProps) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -16,6 +18,7 @@ function ProductForm({ onSubmit, editingProduct, onCancel }: ProductFormProps) {
   const [category, setCategory] = useState('');
   const [error, setError] = useState('');
 
+  //Fyller fälten med produktdata i redigeringsläge rensar dom annars
   useEffect(() => {
     if (editingProduct) {
       setName(editingProduct.name);
@@ -32,6 +35,7 @@ function ProductForm({ onSubmit, editingProduct, onCancel }: ProductFormProps) {
     }
   }, [editingProduct]);
 
+  //Validerar och skickar produkten uppåt rensar fälten efter skapande
   const handleSubmit = async () => {
     if (name.trim().length < 2) {
       setError('Produktnamn måste vara minst 2 tecken');

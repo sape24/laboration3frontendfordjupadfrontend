@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import type { ReactNode } from "react";
 
+//Skyddar en route genom att omdirigera till login om användaren inte är inloggad
 function ProtectedRoute({ children }: {children: ReactNode}) {
     const {isLoggedIn} = useAuth();
 

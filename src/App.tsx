@@ -8,15 +8,18 @@ import './App.css'
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
+//Sätter upp routing och delar authtillståndet via authprovider
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          {/* Alla sidor delar samma layout med navmenyn */}
           <Route path="/" element={<Layout />}>
             <Route index element={<Products />} />
             <Route path="products/:id" element={<ProductDetail />} />
             <Route path="login" element={<Login />} />
+            {/* Admin skyddas av protectedroute */}
             <Route path="admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/>
           </Route>
         </Routes>
