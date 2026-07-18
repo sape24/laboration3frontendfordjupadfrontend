@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import ProductForm from '../components/ProductForm';
 import type { Product, ProductInput } from '../types';
+import './Admin.css';
 
 function Admin() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -86,7 +87,7 @@ function Admin() {
     <div>
       <h2>Administration</h2>
 
-      {error && <p>{error}</p>}
+      {error && <p className='error'>{error}</p>}
 
       <ProductForm
         onSubmit={handleSubmit}
@@ -95,12 +96,16 @@ function Admin() {
       />
 
       <h3>Produkter</h3>
-      <ul>
+      <ul className='admin-list'>
         {products.map((product) => (
-          <li key={product._id}>
-            {product.name} – {product.price} kr ({product.stock} st)
-            <button onClick={() => setEditingProduct(product)}>Redigera</button>
-            <button onClick={() => handleDelete(product._id)}>Ta bort</button>
+          <li key={product._id} className='admin-item'>
+            <span className='admin-item-info'>
+              {product.name} – {product.price} kr ({product.stock} st)
+            </span>
+            <div className='admin-item-buttons'>
+              <button onClick={() => setEditingProduct(product)} className='edit-button'>Redigera</button>
+              <button onClick={() => handleDelete(product._id)} className='delete-button'>Ta bort</button>
+            </div>
           </li>
         ))}
       </ul>

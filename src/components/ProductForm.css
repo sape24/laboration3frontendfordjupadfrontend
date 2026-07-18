@@ -1,0 +1,46 @@
+.product-form {
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.product-form h3 {
+    margin-top: 0;
+}
+
+.product-form input {
+    padding: 0.5rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.form-buttons button {
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    background-color: #4299e1;
+    color: white;
+    font-size: 1rem;
+}
+
+.form-buttons button:hover {
+    background-color: #3182ce;
+}
+
+.cancel-button {
+    background-color: #718096 !important; 
+}
+
+.cancel-button:hover {
+    background-color: #4a5568 !important;
+}

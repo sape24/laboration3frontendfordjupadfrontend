@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import './Layout.css'
 
 function Layout() {
     const {isLoggedIn, username, logout} = useAuth();
@@ -12,21 +13,21 @@ function Layout() {
     return(
         <div>
             <header>
-                <nav>
-                    <NavLink to="/">Produkter</NavLink>
+                <nav className="navbar">
+                    <NavLink to="/" className={({isActive}) => (isActive ? 'nav-link active' : 'nav-link')}>Produkter</NavLink>
                     {isLoggedIn ? (
                         <>
-                            <NavLink to="/admin">Administration</NavLink>
-                            <span>Inloggad som {username}</span>
-                            <button onClick={handleLogout}>Logga ut</button>
+                            <NavLink to="/admin" className={({isActive}) => (isActive ? 'nav-link active' : 'nav-link')}>Administration</NavLink>
+                            <span className="nav-user">Inloggad som {username}</span>
+                            <button onClick={handleLogout} className="nav-button">Logga ut</button>
                         </>
                     ) : (
-                        <NavLink to="/login">Logga in</NavLink>
+                        <NavLink to="/login" className={({isActive}) => (isActive ? 'nav-link active' : 'nav-link')}>Logga in</NavLink>
                     )}
                 </nav>
             </header>
 
-            <main>
+            <main className="container">
                 <Outlet/>
             </main>
         </div>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import type { LoginType } from "../types";
+import './Login.css';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -40,23 +41,19 @@ function Login() {
   }
 
   return(
-    <div>
+    <div className="login-form">
       <h2>Logga in</h2>
 
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
 
-      <div>
-        <label>
-          Användarnamn:
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
-        </label>
+      <div className="form-group">
+        <label>Användarnamn:</label>
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
       </div>
 
-      <div>
-        <label>
-          Lösenord:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-        </label>
+      <div className="form-group">
+        <label>Lösenord:</label>
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
       </div>
 
       <button onClick={handleSubmit}>Logga in</button>

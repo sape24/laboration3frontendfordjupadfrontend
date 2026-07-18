@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { Product, ProductInput } from '../types';
+import './ProductForm.css';
 
 interface ProductFormProps {
   onSubmit: (product: ProductInput) => Promise<void>;
@@ -56,32 +57,42 @@ function ProductForm({ onSubmit, editingProduct, onCancel }: ProductFormProps) {
   };
 
   return (
-    <div>
+    <div className='product-form'>
       <h3>{editingProduct ? 'Redigera produkt' : 'Lägg till produkt'}</h3>
 
-      {error && <p>{error}</p>}
+        {error && <p className='error'>{error}</p>}
 
-      <div>
-        <input placeholder="Namn" value={name} onChange={(e) => setName(e.target.value)} />
-      </div>
-      <div>
-        <input placeholder="Beskrivning" value={description} onChange={(e) => setDescription(e.target.value)} />
-      </div>
-      <div>
-        <input placeholder="Pris" type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
-      </div>
-      <div>
-        <input placeholder="Lagersaldo" type="number" value={stock} onChange={(e) => setStock(e.target.value)} />
-      </div>
-      <div>
-        <input placeholder="Kategori" value={category} onChange={(e) => setCategory(e.target.value)} />
-      </div>
+        <div className='form-group'>
+            <label>Namn</label>
+            <input value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
 
-      <button onClick={handleSubmit}>
-        {editingProduct ? 'Uppdatera' : 'Skapa'}
-      </button>
+        <div className='form-group'>
+            <label>Beskrivning</label>
+            <input value={description} onChange={(e) => setDescription(e.target.value)} />
+        </div>
 
-      {editingProduct && <button onClick={onCancel}>Avbryt</button>}
+        <div className='form-group'>
+            <label>Pris</label>
+            <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+        </div>
+
+        <div className='form-group'>
+            <label>Lagersaldo</label>
+            <input type="number" value={stock} onChange={(e) => setStock(e.target.value)} />
+        </div>
+
+        <div className='form-group'>
+            <label>Kategori</label>
+            <input value={category} onChange={(e) => setCategory(e.target.value)} />
+        </div>
+
+        <div className='form-buttons'>
+            <button onClick={handleSubmit}>
+                {editingProduct ? 'Uppdatera' : 'Skapa'}
+            </button>
+            {editingProduct && <button onClick={onCancel} className='cancel-button'>Avbryt</button>}
+        </div>
     </div>
   );
 }

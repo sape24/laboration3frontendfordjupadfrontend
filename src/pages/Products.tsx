@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import type { Product } from "../types";
+import './Products.css';
 
 function Products() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -36,12 +37,12 @@ function Products() {
   return (
     <div>
       <h2>Produkter</h2>
-      <ul>
+      <ul className="product-list">
         {products.map((product) => (
-          <li key={product._id}>
-            <Link to={`/products/${product._id}`}>{product.name}</Link>
-            {' - '}
-            {product.price} kr ({product.stock} i lager)
+          <li key={product._id} className="product-card">
+            <Link to={`/products/${product._id}`} className="product-name">{product.name}</Link>
+            <span className="product-price">{product.price} kr</span>
+            <span className={product.stock < 5 ? 'product-stock low' : 'product-stock'}>{product.stock} i lager</span>
           </li>
         ))}
       </ul>

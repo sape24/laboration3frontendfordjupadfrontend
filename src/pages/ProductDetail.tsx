@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import { useParams, Link } from 'react-router-dom';
 import type { Product } from '../types';
+import './ProductDetail.css';
 
 function ProductDetail() {
   const { id } = useParams();
@@ -36,14 +37,14 @@ function ProductDetail() {
   if (!product) return <p>Produkten hittades inte</p>
   
   return (
-    <div>
+    <div className='product-detail'>
       <h2>{product.name}</h2>
-      <p>{product.description}</p>
-      <p>Pris: {product.price} kr</p>
-      <p>Lagersaldo: {product.stock} st</p>
-      <p>Kategori: {product.category}</p>
+      <p className='detail-description'>{product.description}</p>
+      <p><strong>Pris:</strong> {product.price} kr</p>
+      <p><strong>Lagersaldo:</strong> {product.stock} st</p>
+      <p><strong>Kategori:</strong> {product.category}</p>
 
-      <Link to="/">Tillbaka till produkter</Link>
+      <Link to="/" className='back-link'>Tillbaka till produkter</Link>
     </div>
   )
 }
